@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,8 +13,7 @@ class User extends Authenticatable
     const STATUS_NON_ACTIVE         = 'non_active';
     const STATUS_NEED_ACTIVATION    = 'need_activation';
 
-    use Notifiable;
-    use SoftDeletes;
+    use HasApiTokens, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
