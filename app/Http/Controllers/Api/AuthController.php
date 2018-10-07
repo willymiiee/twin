@@ -42,7 +42,7 @@ class AuthController extends Controller
         $input['password'] = bcrypt($input['password']);
 
         $user = $userService->create($input);
-        $company = $companyService->signup($input);
+        $company = $companyService->signup($user, $input);
 
         $success['token'] =  $user->createToken('twin')->accessToken;
         $success['name'] =  $user->name;

@@ -30,7 +30,7 @@ class CompanyService
         return $item;
     }
 
-    public function signup($data = [])
+    public function signup($user, $data = [])
     {
         $locationService = app(LocationService::class);
         $departmentService = app(DepartmentService::class);
@@ -63,6 +63,7 @@ class CompanyService
         ];
         $jobTitle = $jobTitleService->create($jobTitleFields);
 
+        $user->jobTitles()->attach($jobTitle->id);
         $roleService->createDefault($jobTitle->id);
 
         return $company;
