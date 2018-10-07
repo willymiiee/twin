@@ -51,4 +51,9 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at'
     ];
+
+    public function jobTitles()
+    {
+        return $this->belongsToMany('App\Models\JobTitle', 'user_job_title');
+    }
 }

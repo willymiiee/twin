@@ -41,4 +41,19 @@ class Location extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function departments()
+    {
+        return $this->hasMany('App\Models\Department');
+    }
+
+    public function jobTitles()
+    {
+        return $this->hasMany('App\Models\JobTitle');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
 }

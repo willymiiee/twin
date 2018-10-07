@@ -46,4 +46,31 @@ class Company extends Model
             ]
         ];
     }
+
+    public function locations()
+    {
+        return $this->hasMany('App\Models\Location');
+    }
+
+    public function departments()
+    {
+        return $this->hasMany('App\Models\Department');
+    }
+
+    public function jobTitles()
+    {
+        return $this->hasMany('App\Models\JobTitle');
+    }
+
+    // public function users()
+    // {
+    //     return $this->hasManyThrough(
+    //         'App\Models\User',
+    //         'App\Pivots\UserJobTitle',
+    //         'job_title_id',
+    //         'user_id',
+    //         'id',
+    //         'company_id'
+    //     );
+    // }
 }

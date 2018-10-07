@@ -30,4 +30,19 @@ class Department extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function jobTitles()
+    {
+        return $this->hasMany('App\Models\JobTitle');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location');
+    }
 }
