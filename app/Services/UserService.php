@@ -18,4 +18,12 @@ class UserService
         $item->save();
         return $item;
     }
+
+    public function update($id, $data = [])
+    {
+        $item = User::find($id);
+        $item->update($data);
+        $item->save();
+        return $item;
+    }
 }

@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\User;
 use App\Services\CompanyService;
 use App\Services\UserService;
+use App\Services\UserActivationService;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -19,12 +21,16 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt(['phone' => $request->get('phone'), 'password' => $request->get('password')])) {
+        if (Auth::attempt([
+            'phone' => $request->get('phone'),
+            'password' => $request->get('password'),
+            'status' => User::STATUS_ACTIVE
+            ])) {
             $user = Auth::user();
-            $success['token'] = $user->createToken('twin')->accessToken;
-            return response()->json(['success' => $success], 200);
+            $result['token'] = $user->createToken('twin')->accessToken;
+            return response()->json(['result' => $result], 200);
         } else {
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json(['error' => 'Unauthorized!'], 401);
         }
     }
 
@@ -37,17 +43,39 @@ class AuthController extends Controller
     {
         $companyService = new CompanyService;
         $userService = new UserService;
+        $userActivationService = new UserActivationService;
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
 
         $user = $userService->create($input);
+        $userActivation = $userActivationService->create($user->id);
         $company = $companyService->signup($user, $input);
 
-        $success['token'] =  $user->createToken('twin')->accessToken;
-        $success['name'] =  $user->name;
-        $success['company'] = $company;
+        $result['token'] =  $user->createToken('twin')->accessToken;
+        $result['name'] =  $user->name;
+        $result['company'] = $company;
+        $result['activation_token'] = $userActivation->token;
 
-        return response()->json(['success' => $success], 200);
+        return response()->json(['result' => $result], 200);
+    }
+
+    /**
+     * Activate User
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function activate($token = '')
+    {
+        $userService = new UserService;
+        $userActivationService = new UserActivationService;
+        $activation = $userActivationService->find($token);
+
+        if ($activation) {
+            $userService->update($activation->user_id, ['status' => User::STATUS_ACTIVE]);
+            return response()->json(['message' => 'User activated!']);
+        }
+
+        return response()->json(['error' => 'User not found!'], 400);
     }
 }
