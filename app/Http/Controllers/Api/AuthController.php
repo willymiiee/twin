@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\Login as LoginRequest;
+use App\Http\Requests\Auth\Register as RegisterRequest;
 use App\Models\User;
 use App\Services\CompanyService;
 use App\Services\UserService;

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\Request;
 
-class RegisterRequest extends Request
+class Register extends Request
 {
     /**
      * Get the validation rules that apply to the request.
