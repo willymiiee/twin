@@ -22,8 +22,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (Auth::attempt([
-            'phone' => $request->get('phone'),
-            'password' => $request->get('password'),
+            'phone' => $request->phone,
+            'password' => $request->password,
             'status' => User::STATUS_ACTIVE
             ])) {
             $user = Auth::user();
