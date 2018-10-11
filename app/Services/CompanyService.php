@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\Company as CompanyResource;
 use App\Models\Company;
 use Illuminate\Http\Request;
 // use Image;
@@ -11,6 +12,12 @@ class CompanyService
     public function __construct()
     {
         # code...
+    }
+
+    public function find($id)
+    {
+        $item = Company::findOrFail($id);
+        return new CompanyResource($item);
     }
 
     public function create($data = [])
@@ -28,6 +35,13 @@ class CompanyService
         $item = new Company($data);
         $item->save();
         return $item;
+    }
+
+    public function update($data = [], $id)
+    {
+        $item = Company::findOrFail($id);
+        $item->slug = null;
+        $item->update($data);
     }
 
     public function signup($user, $data = [])
@@ -65,7 +79,5 @@ class CompanyService
 
         $user->jobTitles()->attach($jobTitle->id);
         $roleService->createDefault($jobTitle->id);
-
-        return $company;
     }
 }
