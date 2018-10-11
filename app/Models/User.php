@@ -56,4 +56,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\JobTitle', 'user_job_title');
     }
+
+    public function company()
+    {
+        $jobTitles = $this->jobTitles();
+        return $jobTitles->get()[0]->company();
+    }
 }
