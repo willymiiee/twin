@@ -29,6 +29,7 @@ class DepartmentService
     {
         $item = new Department($data);
         $item->save();
+        return $item;
     }
 
     public function update($data = [], $id)
