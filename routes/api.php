@@ -18,9 +18,12 @@ Route::namespace('Api')->group(function () {
     Route::post('register', 'AuthController@register');
     Route::get('activate/{token}', 'AuthController@activate');
 
-    Route::middleware('auth:api')->group(function () {
+    Route::prefix('company')->middleware('auth:api')->group(function () {
+        Route::get('/', 'CompanyController@index');
+        Route::put('/', 'CompanyController@update');
+
         Route::apiResources([
-            'department' => 'DepartmentController'
+            'department' => 'DepartmentController',
         ]);
     });
 });
