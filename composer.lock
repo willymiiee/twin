@@ -1947,16 +1947,16 @@
         },
         {
             "name": "mpociot/laravel-apidoc-generator",
-            "version": "2.1.5",
+            "version": "2.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpociot/laravel-apidoc-generator.git",
-                "reference": "6258b74926131ff917181e3121e29387234895a8"
+                "reference": "f586f10e1b59a1dd6a6345cea98f39b450ac38fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/6258b74926131ff917181e3121e29387234895a8",
-                "reference": "6258b74926131ff917181e3121e29387234895a8",
+                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/f586f10e1b59a1dd6a6345cea98f39b450ac38fa",
+                "reference": "f586f10e1b59a1dd6a6345cea98f39b450ac38fa",
                 "shasum": ""
             },
             "require": {
@@ -2003,7 +2003,7 @@
                 "documentation",
                 "laravel"
             ],
-            "time": "2018-09-13T06:53:29+00:00"
+            "time": "2018-10-08T18:00:27+00:00"
         },
         {
             "name": "mpociot/reflection-docblock",
@@ -2155,16 +2155,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.0.4",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "fa6ee28600d21d49b2b4e1006b48426cec8e579c"
+                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fa6ee28600d21d49b2b4e1006b48426cec8e579c",
-                "reference": "fa6ee28600d21d49b2b4e1006b48426cec8e579c",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/d0230c5c77a7e3cfa69446febf340978540958c0",
+                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0",
                 "shasum": ""
             },
             "require": {
@@ -2180,7 +2180,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -2202,7 +2202,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-09-18T07:03:24+00:00"
+            "time": "2018-10-10T09:24:14+00:00"
         },
         {
             "name": "paragonie/random_compat",
