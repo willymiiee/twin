@@ -12,6 +12,11 @@ use App\Services\UserService;
 use App\Services\UserActivationService;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @resource Authentication
+ *
+ * API for authentication
+ */
 class AuthController extends Controller
 {
     /**

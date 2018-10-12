@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Company as CompanyRequest;
 use App\Services\CompanyService;
 
+/**
+ * @resource Company
+ *
+ * API for current user's company
+ */
 class CompanyController extends Controller
 {
     protected $roles = [];
@@ -45,10 +50,9 @@ class CompanyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the current company detail.
      *
      * @param  CompanyRequest  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(CompanyRequest $request)

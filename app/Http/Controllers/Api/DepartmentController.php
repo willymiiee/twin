@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Department as DepartmentRequest;
 use App\Services\DepartmentService;
 
+/**
+ * @resource Department
+ *
+ * API for current company's department
+ */
 class DepartmentController extends Controller
 {
     protected $roles = [];
@@ -30,7 +35,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the departments on current company.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +50,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new department for the current company.
      *
      * @param  DepartmentRequest  $request
      * @return \Illuminate\Http\Response
@@ -64,7 +69,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specific department.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -80,7 +85,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified department.
      *
      * @param  DepartmentRequest  $request
      * @param  int  $id
@@ -97,7 +102,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified department.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

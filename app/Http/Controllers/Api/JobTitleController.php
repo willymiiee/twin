@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\JobTitle as JobTitleRequest;
 use App\Services\JobTitleService;
 
+/**
+ * @resource Job Title
+ *
+ * API for current company's job titles
+ */
 class JobTitleController extends Controller
 {
     protected $roles = [];
