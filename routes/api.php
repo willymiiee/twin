@@ -24,6 +24,7 @@ Route::namespace('Api')->group(function () {
 
         Route::apiResources([
             'department' => 'DepartmentController',
+            'department.jobtitle' => 'JobTitleController',
         ]);
     });
 });
