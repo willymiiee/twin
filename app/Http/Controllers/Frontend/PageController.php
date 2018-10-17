@@ -12,4 +12,7 @@ class PageController extends Controller
     public function showAbout(){
         return view('Frontend.pages.about');
     }
+    public function showTeam(){
+        return view('Frontend.pages.team');
+    }
 }

@@ -17,3 +17,6 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('Frontend/pages/about');
 });
+Route::get('/team', function () {
+    return view('Frontend/pages/team');
+});
