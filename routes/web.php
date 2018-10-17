@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('Frontend/pages/homepage');
 });
+Route::get('/about', function () {
+    return view('Frontend/pages/about');
+});
