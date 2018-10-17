@@ -21,6 +21,8 @@
 
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuEWJGk_ofmKHY_leDHlkk9sbQ-uhX9KQ&callback=initMap"
+        async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
