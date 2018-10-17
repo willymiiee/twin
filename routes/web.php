@@ -20,3 +20,7 @@ Route::get('/about', function () {
 Route::get('/team', function () {
     return view('Frontend/pages/team');
 });
+Route::get('/team', function () {
+    return view('Frontend/pages/infrastructure');
+});
+

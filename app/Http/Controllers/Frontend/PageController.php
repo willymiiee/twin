@@ -15,4 +15,7 @@ class PageController extends Controller
     public function showTeam(){
         return view('Frontend.pages.team');
     }
+    public function showInfrastructure(){
+        return view('Frontend.pages.infrastructure');
+    }
 }
