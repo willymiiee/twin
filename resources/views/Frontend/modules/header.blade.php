@@ -9,11 +9,11 @@
         </button>
         <div class="collapse navbar-collapse" id="toggle-nav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="index.html">Home</a>
-                <a class="nav-item nav-link" href="about.html">About</a>
-                <a class="nav-item nav-link" href="product.html">Products</a>
-                <a class="nav-item nav-link" href="infrastructure.html">Infrastructure</a>
-                <a class="nav-item nav-link" href="team.html">Team</a>
+                <a class="nav-item nav-link active" href="{{ url('/') }}">Home</a>
+                <a class="nav-item nav-link" href="{{ url('about') }}">About</a>
+                <a class="nav-item nav-link" href="{{ url('product') }}">Products</a>
+                <a class="nav-item nav-link" href="{{ url('infrastructure') }}">Infrastructure</a>
+                <a class="nav-item nav-link" href="{{ url('team') }}">Team</a>
             </div>
         </div>
     </div>

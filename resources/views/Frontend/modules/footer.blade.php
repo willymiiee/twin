@@ -22,11 +22,11 @@
                 <h6>Link</h6>
                 <hr>
                 <ul class="list-unstyled">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="product.html">Product</a></li>
-                    <li><a href="infrastructure.html">Infrastructure</a></li>
-                    <li><a href="team.html">Team</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('about') }}">About</a></li>
+                    <li><a href="{{ url('product') }}">Product</a></li>
+                    <li><a href="{{ url('infrastructure') }}">Infrastructure</a></li>
+                    <li><a href="{{ url('team') }}">Team</a></li>
                 </ul>
             </div>
             <div class="col-md-4 col-8">
