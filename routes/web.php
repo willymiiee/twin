@@ -20,7 +20,10 @@ Route::get('/about', function () {
 Route::get('/team', function () {
     return view('Frontend/pages/team');
 });
-Route::get('/team', function () {
+Route::get('/infrastructure', function () {
     return view('Frontend/pages/infrastructure');
+});
+Route::get('/product', function () {
+    return view('Frontend/pages/product');
 });
 

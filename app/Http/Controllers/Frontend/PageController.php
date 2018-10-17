@@ -18,4 +18,7 @@ class PageController extends Controller
     public function showInfrastructure(){
         return view('Frontend.pages.infrastructure');
     }
+    public function showProduct(){
+        return view('Frontend.pages.product');
+    }
 }
