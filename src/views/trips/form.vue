@@ -17,32 +17,66 @@
                 <p v-show="'user_id' in this.error" class="text-danger">{{ this.error.user_id }}</p>
               </b-form-group>
 
-              <b-form-group horizontal label="Toko Tujuan" label-for="destination">
-                <multiselect
-                  placeholder="Silahkan masukkan toko tujuan"
-                  v-model="data.destination"
-                  :options="stores"
-                  :multiple="true"
-                  :taggable="true"
-                  tag-placeholder="Tambahkan toko"
-                  @tag="addStore"
-                ></multiselect>
-                <p
-                  v-show="'destination' in this.error"
-                  class="text-danger"
-                >{{ this.error.destination }}</p>
-              </b-form-group>
+              <template v-if="!data.started_at">
+                <b-form-group horizontal label="Toko Tujuan" label-for="destination">
+                  <multiselect
+                    placeholder="Silahkan masukkan toko tujuan"
+                    v-model="data.destination"
+                    :options="stores"
+                    :multiple="true"
+                    :taggable="true"
+                    tag-placeholder="Tambahkan toko"
+                    @tag="addStore"
+                  ></multiselect>
+                  <p
+                    v-show="'destination' in this.error"
+                    class="text-danger"
+                  >{{ this.error.destination }}</p>
+                </b-form-group>
+              </template>
+              <template v-else>
+                <div class="table-responsive mb-2">
+                  <table class="table center-aligned-table">
+                    <thead>
+                      <tr>
+                        <th class="pl-0 border-bottom-0">Nama Toko</th>
+                        <th class="pl-0 border-bottom-0">Koordinat Lintang</th>
+                        <th class="pl-0 border-bottom-0">Koordinat Bujur</th>
+                        <th class="pl-0 border-bottom-0">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="d in data.detailDestination" :key="d.id">
+                        <td class="pl-0">{{ d.name }}</td>
+                        <td class="pl-0">{{ d.latitude }}</td>
+                        <td class="pl-0">{{ d.longitude }}</td>
+                        <td class="pl-0">
+                          <template v-if="d.status == 'complete'">
+                            Selesai
+                          </template>
+                          <template v-else>
+                            Belum Selesai
+                          </template>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
 
-              <b-button
-                v-if="!submit"
-                type="submit"
-                variant="success"
-                class="mr-2"
-                @click.prevent="submitTrip"
-              >{{ this.label }}</b-button>
-              <b-button v-else disabled variant="success" class="mr-2">
-                <i class="fa fa-spinner fa-pulse"></i>
-              </b-button>
+              <template v-if="!data.started_at">
+                <b-button
+                  v-if="!submit"
+                  type="submit"
+                  variant="success"
+                  class="mr-2"
+                  @click.prevent="submitTrip"
+                >{{ this.label }}</b-button>
+                <b-button v-else disabled variant="success" class="mr-2">
+                  <i class="fa fa-spinner fa-pulse"></i>
+                </b-button>
+              </template>
+
               <router-link :to="{ name: 'trip-list' }">
                 <b-button variant="light">Batal</b-button>
               </router-link>
@@ -133,7 +167,8 @@ export default {
           self.data = {
             ...resp.data.data,
             user_id: resp.data.data.driver.id,
-            destination: resp.data.data.destination.map(d => d.name)
+            destination: resp.data.data.destination.map(d => d.name),
+            detailDestination: resp.data.data.destination
           }
         })
         .catch(err => {

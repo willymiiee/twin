@@ -25,6 +25,9 @@
                       <th class="pl-0 border-bottom-0">Tipe</th>
                       <th class="pl-0 border-bottom-0">Pengemudi</th>
                       <th class="pl-0 border-bottom-0">Tanggal dibuat</th>
+                      <th class="pl-0 border-bottom-0">Status</th>
+                      <th class="pl-0 border-bottom-0">Tanggal mulai</th>
+                      <th class="pl-0 border-bottom-0">Tanggal selesai</th>
                       <th class="text-right border-bottom-0"></th>
                     </tr>
                   </thead>
@@ -33,6 +36,25 @@
                       <td class="pl-0">{{ d.type }}</td>
                       <td class="pl-0">{{ d.driver.name }}</td>
                       <td class="pl-0">{{ d.created_at.date | moment }}</td>
+                      <td class="pl-0">
+                        <template v-if="d.started_at && !d.ended_at">
+                          <label class="badge badge-warning">
+                            Sedang Berlangsung
+                          </label>
+                        </template>
+                        <template v-else-if="d.ended_at">
+                          <label class="badge badge-teal">
+                            Selesai
+                          </label>
+                        </template>
+                        <template v-else-if="!d.started_at">
+                          <label class="badge badge-danger">
+                            Belum Dimulai
+                          </label>
+                        </template>
+                      </td>
+                      <td class="pl-0">{{ d.started_at | moment }}</td>
+                      <td class="pl-0">{{ d.ended_at | moment }}</td>
                       <td class="pr-0 text-right">
                         <router-link
                           class="btn btn-outline-success btn-sm"
@@ -122,7 +144,7 @@ export default {
   },
   filters: {
     moment: function(date) {
-      return moment(date).format('D MMMM YYYY H:mm')
+      return date ? moment(date).format('D MMMM YYYY H:mm') + ' WITA' : '-'
     }
   }
 }
