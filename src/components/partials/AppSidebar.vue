@@ -14,10 +14,10 @@
         </li>
         <li class="nav-item"><router-link class="nav-link" :to="{ name: 'dashboard' }"><i class="fa fa-fw fa-tachometer mr-2"></i> <span class="menu-title ml-2">Dasbor</span></router-link></li>
         <li class="nav-item">
-          <span class="nav-link" v-b-toggle="'administration'">
+          <span class="nav-link" v-b-toggle.administration>
             <i class="fa fa-fw fa-book mr-2"></i> <span class="menu-title ml-2">Administrasi</span> <i class="menu-arrow"></i>
           </span>
-          <b-collapse id="administration">
+          <b-collapse id="administration" visible accordion="myAccordion">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'location-list' }">Lokasi</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'department-list' }">Departemen</router-link></li>
