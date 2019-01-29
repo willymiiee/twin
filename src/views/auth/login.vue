@@ -4,11 +4,12 @@
     <b-alert :show="dismissCountDown"
       dismissible
       fade
-      variant="success"
+      :variant="alertType"
       @dismissed="dismissCountDown=0"
       @dismiss-count-down="countDownChanged">
-      User telah aktif!
+      {{ this.alertText }}
     </b-alert>
+
     <div class="wrapper d-flex align-items-center auth login-full-bg">
       <div class="row w-100">
         <div class="col-lg-6 py-auto mx-auto">
@@ -21,7 +22,6 @@
                   <label for="inputEmail">Email</label>
                   <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="john.doe@gmail.com" v-model="email">
                   <i class="mdi mdi-account"></i>
-                  <span v-show="'email' in this.error" class="text-danger">{{ this.error.email }}</span>
                 </div>
                 <div class="form-group">
                   <label>atau</label>
@@ -30,13 +30,11 @@
                   <label for="inputPhone">Telepon</label>
                   <input type="text" class="form-control" id="inputPhone" aria-describedby="phoneHelp" placeholder="081123456789" v-model="phone">
                   <i class="mdi mdi-account"></i>
-                  <span v-show="'phone' in this.error" class="text-danger">{{ this.error.phone }}</span>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword">Kata Sandi</label>
                   <input type="password" class="form-control" id="inputPassword" placeholder="" v-model="password">
                   <i class="mdi mdi-eye"></i>
-                  <span v-show="'password' in this.error" class="text-danger">{{ this.error.password }}</span>
                 </div>
                 <div class="mt-5">
                   <div class="btn btn-block btn-warning btn-lg font-weight-medium" @click="login">Masuk</div>
@@ -62,16 +60,19 @@ export default {
   name: 'login',
   data() {
     return {
-      error: {},
       email: null,
       phone: null,
       password: null,
       dismissSecs: 3,
-      dismissCountDown: 0
+      dismissCountDown: 0,
+      alertType: '',
+      alertText: ''
     }
   },
   mounted() {
     if (localStorage.userActivated != undefined) {
+      this.alertType = 'success'
+      this.alertText = "User telah aktif!"
       this.dismissCountDown = this.dismissSecs
       localStorage.removeItem('userActivated')
     }
@@ -92,7 +93,6 @@ export default {
 
       this.$http.post('login', data)
         .then(resp => {
-          self.error = {}
           const response = resp.data
           localStorage.token = response.token
           localStorage.userName = response.user.name
@@ -103,13 +103,12 @@ export default {
           self.$router.push({ name: 'dashboard' })
         })
         .catch(err => {
-          console.log(err)
-          const errorResponse = err.response.data
-
-          if ('error' in errorResponse && errorResponse.error == 'Unauthorized')
-            self.error = { password: ['Data tidak ditemukan!'] }
-          else
-            self.error = errorResponse.errors
+          this.alertType = 'danger'
+          this.alertText = "Email / nomor telepon dan kata sandi yang anda masukkan salah!"
+          this.dismissCountDown = this.dismissSecs
+          this.email = null
+          this.phone = null
+          this.password = null
         })
     }
   }
