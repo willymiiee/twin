@@ -57,7 +57,7 @@ let routes = new Router({
       },
       children: [
         {
-          path: '',
+          path: 'home',
           name: 'dashboard',
           component: dashboard
         },

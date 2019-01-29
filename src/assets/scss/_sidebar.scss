@@ -40,6 +40,11 @@
           background: $sidebar-light-menu-active-bg;
         }
 
+        &.active {
+          background: $sidebar-light-menu-active-bg;
+          color: $blue;
+        }
+
         .menu-icon {
           margin-right: 1.25rem;
           width: $sidebar-icon-size;
