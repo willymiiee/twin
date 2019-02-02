@@ -15,12 +15,12 @@
 <script lang="js">
 export default {
   name: 'dashboard',
-  data() {
+  data () {
     return {
       name: null
     }
   },
-  mounted() {
+  mounted () {
     this.name = localStorage.userName
   }
 }

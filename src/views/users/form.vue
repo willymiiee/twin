@@ -85,7 +85,7 @@
 <script>
 export default {
   name: 'UserForm',
-  data() {
+  data () {
     return {
       label: 'Daftarkan',
       loaded: true,
@@ -105,7 +105,7 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     this.getJobtitles()
     if (this.$route.params.id !== 'add') {
       this.loaded = false
@@ -115,7 +115,7 @@ export default {
     }
   },
   methods: {
-    getJobtitles() {
+    getJobtitles () {
       let self = this
       self.$http
         .get('admin/jobtitle?per_page=all')
@@ -131,7 +131,7 @@ export default {
           console.log(err)
         })
     },
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/user/' + self.$route.params.id)
@@ -147,7 +147,7 @@ export default {
           console.log(err)
         })
     },
-    submitUser() {
+    submitUser () {
       let self = this
       const url =
         'admin/user' + (self.$route.params.id !== 'add' ? '/' + self.$route.params.id : '')

@@ -87,7 +87,7 @@ import moment from 'moment'
 
 export default {
   name: 'UserList',
-  data() {
+  data () {
     return {
       datas: [],
       loaded: false,
@@ -97,11 +97,11 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     this.getData()
   },
   methods: {
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/user?page=' + self.currentPage)
@@ -116,7 +116,7 @@ export default {
         })
     },
 
-    pageChange(page) {
+    pageChange (page) {
       this.currentPage = page
       this.loaded = false
       this.getData()

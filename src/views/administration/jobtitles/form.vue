@@ -131,7 +131,7 @@
 <script>
 export default {
   name: 'JobTitleForm',
-  data() {
+  data () {
     return {
       label: 'Buat',
       loaded: true,
@@ -170,7 +170,7 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     this.getLocations()
     if (this.$route.params.id !== 'add') {
       this.loaded = false
@@ -184,7 +184,7 @@ export default {
     //   this.data.roles[0] = checked ? this.roleOptions.slice() : []
     //   console.log(this.data.roles[0])
     // },
-    getLocations() {
+    getLocations () {
       let self = this
       self.$http
         .get('admin/location?per_page=all')
@@ -200,7 +200,7 @@ export default {
           console.log(err)
         })
     },
-    getDepartments(locationId) {
+    getDepartments (locationId) {
       if (locationId) {
         let self = this
         self.departments = [{ value: null, text: 'Silahkan pilih nama departemen', disabled: true }]
@@ -221,7 +221,7 @@ export default {
         self.errorApi = true
       }
     },
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/jobtitle/' + self.$route.params.id)
@@ -251,18 +251,18 @@ export default {
           console.log(err)
         })
     },
-    submitJobtitle() {
+    submitJobtitle () {
       let self = this
       const url =
         'admin/jobtitle' + (self.$route.params.id !== 'add' ? '/' + self.$route.params.id : '')
       self.submit = true
       self.data.roles = self.data.roles.map(r => {
         return {
-          list: r.indexOf('list') != -1 ? 1 : 0,
-          detail: r.indexOf('detail') != -1 ? 1 : 0,
-          create: r.indexOf('create') != -1 ? 1 : 0,
-          update: r.indexOf('update') != -1 ? 1 : 0,
-          delete: r.indexOf('delete') != -1 ? 1 : 0
+          list: r.indexOf('list') !== -1 ? 1 : 0,
+          detail: r.indexOf('detail') !== -1 ? 1 : 0,
+          create: r.indexOf('create') !== -1 ? 1 : 0,
+          update: r.indexOf('update') !== -1 ? 1 : 0,
+          delete: r.indexOf('delete') !== -1 ? 1 : 0
         }
       })
 

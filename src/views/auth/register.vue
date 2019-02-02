@@ -67,7 +67,7 @@
 <script lang="js">
 export default {
   name: 'register',
-  data() {
+  data () {
     return {
       error: {},
       name: null,

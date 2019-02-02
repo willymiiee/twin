@@ -24,16 +24,16 @@
 <script lang="js">
 export default {
   name: 'app-header',
-  data() {
+  data () {
     return {
       company: null
     }
   },
-  mounted() {
+  mounted () {
     this.company = localStorage.company
   },
   methods: {
-    logout() {
+    logout () {
       let self = this
       localStorage.removeItem('token')
       localStorage.removeItem('userName')

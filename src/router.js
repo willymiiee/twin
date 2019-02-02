@@ -42,6 +42,9 @@ import storeForm from './views/stores/form'
 import userList from './views/users/list'
 import userForm from './views/users/form'
 
+// Region
+import regionList from './views/administration/regions/list'
+
 Vue.use(Router)
 
 let routes = new Router({
@@ -112,6 +115,11 @@ let routes = new Router({
                   component: jobTitleForm
                 }
               ]
+            },
+            {
+              path: 'regions',
+              name: 'region-list',
+              component: regionList
             }
           ]
         },

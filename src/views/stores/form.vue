@@ -61,7 +61,7 @@
 <script>
 export default {
   name: 'StoreForm',
-  data() {
+  data () {
     return {
       label: 'Daftarkan',
       loaded: true,
@@ -76,7 +76,7 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     if (this.$route.params.id !== 'add') {
       this.loaded = false
       this.label = 'Ubah'
@@ -84,7 +84,7 @@ export default {
     }
   },
   methods: {
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/store/' + self.$route.params.id)

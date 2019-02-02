@@ -81,7 +81,7 @@
 <script>
 export default {
   name: 'DepartmentList',
-  data() {
+  data () {
     return {
       datas: [],
       loaded: false,
@@ -91,11 +91,11 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     this.getData()
   },
   methods: {
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/department?page=' + self.currentPage)
@@ -110,7 +110,7 @@ export default {
         })
     },
 
-    pageChange(page) {
+    pageChange (page) {
       this.currentPage = page
       this.loaded = false
       this.getData()

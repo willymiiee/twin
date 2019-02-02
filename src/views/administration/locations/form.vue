@@ -71,7 +71,7 @@
 <script>
 export default {
   name: 'LocationForm',
-  data() {
+  data () {
     return {
       label: 'Buat',
       loaded: true,
@@ -86,7 +86,7 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     if (this.$route.params.id !== 'add') {
       this.loaded = false
       this.label = 'Ubah'
@@ -94,7 +94,7 @@ export default {
     }
   },
   methods: {
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/location/' + self.$route.params.id)
@@ -107,7 +107,7 @@ export default {
           console.log(err)
         })
     },
-    submitLocation() {
+    submitLocation () {
       let self = this
       let url =
         'admin/location' + (self.$route.params.id !== 'add' ? '/' + self.$route.params.id : '')

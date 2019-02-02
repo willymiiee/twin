@@ -94,7 +94,7 @@ import Multiselect from 'vue-multiselect'
 export default {
   components: { Multiselect },
   name: 'TripForm',
-  data() {
+  data () {
     return {
       label: 'Buat',
       loaded: true,
@@ -115,7 +115,7 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     this.getUsers()
     this.getStores()
     if (this.$route.params.id !== 'add') {
@@ -159,7 +159,7 @@ export default {
       this.stores.push(newStore)
       this.data.destination.push(newStore)
     },
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/trip/' + self.$route.params.id)

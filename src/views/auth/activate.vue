@@ -1,7 +1,7 @@
 <script>
 export default {
   name: 'activate',
-  mounted() {
+  mounted () {
     const token = this.$route.params.token
     this.$http.get('activate/' + token)
       .then(res => {

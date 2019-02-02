@@ -22,6 +22,7 @@
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'location-list' }">Lokasi</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'department-list' }">Departemen</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'jobtitle-list' }">Jabatan</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" :to="{ name: 'region-list' }">Daerah</router-link></li>
             </ul>
           </b-collapse>
         </li>
@@ -38,18 +39,18 @@
 <script lang="js">
 export default {
   name: 'app-sidebar',
-  data() {
+  data () {
     return {
       name: null,
       jobTitle: null
     }
   },
-  mounted() {
+  mounted () {
     this.name = localStorage.userName
     this.jobTitle = localStorage.jobTitle
   },
   methods: {
-    logout() {
+    logout () {
       let self = this
       localStorage.removeItem('token')
       localStorage.removeItem('userName')

@@ -39,13 +39,13 @@
 <script>
 export default {
   name: 'thankyou',
-  data() {
+  data () {
     return {
       token: null,
       url: null
     }
   },
-  mounted() {
+  mounted () {
     this.token = localStorage.activationToken
     this.url = process.env.VUE_APP_APP_URL + 'activate/' + this.token
   }

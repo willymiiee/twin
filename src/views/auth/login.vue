@@ -58,7 +58,7 @@
 <script lang="js">
 export default {
   name: 'login',
-  data() {
+  data () {
     return {
       email: null,
       phone: null,
@@ -69,10 +69,10 @@ export default {
       alertText: ''
     }
   },
-  mounted() {
-    if (localStorage.userActivated != undefined) {
+  mounted () {
+    if (localStorage.userActivated !== undefined) {
       this.alertType = 'success'
-      this.alertText = "User telah aktif!"
+      this.alertText = 'User telah aktif!'
       this.dismissCountDown = this.dismissSecs
       localStorage.removeItem('userActivated')
     }
@@ -81,15 +81,13 @@ export default {
     countDownChanged (dismissCountDown) {
       this.dismissCountDown = dismissCountDown
     },
-    login() {
+    login () {
       let self = this
       let data = new URLSearchParams()
       data.append('password', self.password)
 
-      if (self.email)
-        data.append('email', self.email)
-      else
-        data.append('phone', self.phone)
+      if (self.email) data.append('email', self.email)
+      else data.append('phone', self.phone)
 
       this.$http.post('login', data)
         .then(resp => {
@@ -103,8 +101,9 @@ export default {
           self.$router.push({ name: 'dashboard' })
         })
         .catch(err => {
+          console.log(err)
           this.alertType = 'danger'
-          this.alertText = "Email / nomor telepon dan kata sandi yang anda masukkan salah!"
+          this.alertText = 'Email / nomor telepon dan kata sandi yang anda masukkan salah!'
           this.dismissCountDown = this.dismissSecs
           this.email = null
           this.phone = null
@@ -116,8 +115,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .alert {
-    position: absolute;
-    width: 100%;
-  }
+.alert {
+  position: absolute;
+  width: 100%;
+}
 </style>

@@ -59,7 +59,7 @@
 <script>
 export default {
   name: 'DepartmentForm',
-  data() {
+  data () {
     return {
       label: 'Buat',
       loaded: true,
@@ -73,7 +73,7 @@ export default {
       errorApi: false
     }
   },
-  mounted() {
+  mounted () {
     this.getLocations()
     if (this.$route.params.id !== 'add') {
       this.loaded = false
@@ -98,7 +98,7 @@ export default {
           console.log(err)
         })
     },
-    getData() {
+    getData () {
       let self = this
       self.$http
         .get('admin/department/' + self.$route.params.id)
