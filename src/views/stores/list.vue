@@ -22,13 +22,21 @@
                 <table class="table center-aligned-table">
                   <thead>
                     <tr>
-                      <th class="pl-0 border-bottom-0">Nama Toko</th>
+                      <th class="pl-0 border-bottom-0">No. Acc</th>
+                      <th class="pl-0 border-bottom-0">Nama</th>
+                      <th class="pl-0 border-bottom-0">Kode Mars</th>
+                      <th class="pl-0 border-bottom-0">Pemilik</th>
+                      <th class="pl-0 border-bottom-0">Tipe</th>
                       <th class="text-right border-bottom-0"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="d in datas" :key="d.id">
+                      <td class="pl-0">{{ d.acc_number }}</td>
                       <td class="pl-0">{{ d.name }}</td>
+                      <td class="pl-0">{{ d.mars_code }}</td>
+                      <td class="pl-0">{{ d.key_person }}</td>
+                      <td class="pl-0">{{ d.type }}</td>
                       <td class="pr-0 text-right">
                         <router-link
                           class="btn btn-outline-success btn-sm"
