@@ -22,6 +22,7 @@
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'location-list' }">Lokasi</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'department-list' }">Departemen</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'jobtitle-list' }">Jabatan</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" :to="{ name: 'principal-list' }">Principal</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'warehouse-list' }">Gudang</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'depot-list' }">Depo</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'team-list' }">Tim</router-link></li>

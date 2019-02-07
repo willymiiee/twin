@@ -45,6 +45,10 @@ import userForm from './views/users/form'
 // Region
 import regionList from './views/administration/regions/list'
 
+// Principal
+import principalList from './views/principals/list'
+import principalForm from './views/principals/form'
+
 // Warehouse
 import warehouseList from './views/warehouses/list'
 import warehouseForm from './views/warehouses/form'
@@ -125,6 +129,22 @@ let routes = new Router({
                   path: ':id',
                   name: 'jobtitle-form',
                   component: jobTitleForm
+                }
+              ]
+            },
+            {
+              path: 'principals',
+              component: page,
+              children: [
+                {
+                  path: '',
+                  name: 'principal-list',
+                  component: principalList
+                },
+                {
+                  path: ':id',
+                  name: 'principal-form',
+                  component: principalForm
                 }
               ]
             },
