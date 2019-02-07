@@ -1,5 +1,5 @@
 <template>
-  <section class="user-add">
+  <section class="warehouse-add">
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
