@@ -121,6 +121,22 @@ let routes = new Router({
               ]
             },
             {
+              path: 'warehouses',
+              component: page,
+              children: [
+                {
+                  path: '',
+                  name: 'warehouse-list',
+                  component: warehouseList
+                },
+                {
+                  path: ':id',
+                  name: 'warehouse-form',
+                  component: warehouseForm
+                }
+              ]
+            },
+            {
               path: 'regions',
               name: 'region-list',
               component: regionList
@@ -172,22 +188,6 @@ let routes = new Router({
               path: ':id',
               name: 'user-form',
               component: userForm
-            }
-          ]
-        },
-        {
-          path: 'warehouses',
-          component: page,
-          children: [
-            {
-              path: '',
-              name: 'warehouse-list',
-              component: warehouseList
-            },
-            {
-              path: ':id',
-              name: 'warehouse-form',
-              component: warehouseForm
             }
           ]
         }
