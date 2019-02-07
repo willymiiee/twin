@@ -53,6 +53,10 @@ import warehouseForm from './views/warehouses/form'
 import depotList from './views/depots/list'
 import depotForm from './views/depots/form'
 
+// Team
+import teamList from './views/teams/list'
+import teamForm from './views/teams/form'
+
 Vue.use(Router)
 
 let routes = new Router({
@@ -153,6 +157,22 @@ let routes = new Router({
                   path: ':id',
                   name: 'depot-form',
                   component: depotForm
+                }
+              ]
+            },
+            {
+              path: 'teams',
+              component: page,
+              children: [
+                {
+                  path: '',
+                  name: 'team-list',
+                  component: teamList
+                },
+                {
+                  path: ':id',
+                  name: 'team-form',
+                  component: teamForm
                 }
               ]
             },
