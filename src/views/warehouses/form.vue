@@ -27,6 +27,16 @@
                 <p v-show="'address' in this.error" class="text-danger">{{ this.error.address }}</p>
               </b-form-group>
 
+              <b-form-group horizontal label="Nomor Telepon" label-for="phone">
+                <b-form-input id="phone" v-model.trim="data.phone"></b-form-input>
+                <p v-show="'phone' in this.error" class="text-danger">{{ this.error.phone }}</p>
+              </b-form-group>
+
+              <b-form-group horizontal label="Kode Pos" label-for="zipcode">
+                <b-form-input id="zipcode" v-model.trim="data.zipcode"></b-form-input>
+                <p v-show="'zipcode' in this.error" class="text-danger">{{ this.error.zipcode }}</p>
+              </b-form-group>
+
               <b-form-group horizontal label="Provinsi" label-for="province_id">
                 <b-form-select
                   v-model="data.province_id"
@@ -175,6 +185,7 @@ export default {
           console.log(err)
         })
     },
+
     getData() {
       let self = this
       self.$http
@@ -216,6 +227,7 @@ export default {
           console.log(err)
         })
     },
+
     submitWarehouse() {
       let self = this
       const url =
@@ -233,7 +245,7 @@ export default {
         })
         .catch(err => {
           const errorResponse = err.response.data
-          self.error = errorResponse.errors
+          self.error = errorResponse.errors ? errorResponse.errors : errorResponse
           self.submit = false
         })
     }
