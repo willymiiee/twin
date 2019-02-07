@@ -45,6 +45,10 @@ import userForm from './views/users/form'
 // Region
 import regionList from './views/administration/regions/list'
 
+// Warehouse
+import warehouseList from './views/warehouses/list'
+import warehouseForm from './views/warehouses/form'
+
 Vue.use(Router)
 
 let routes = new Router({
@@ -168,6 +172,22 @@ let routes = new Router({
               path: ':id',
               name: 'user-form',
               component: userForm
+            }
+          ]
+        },
+        {
+          path: 'warehouses',
+          component: page,
+          children: [
+            {
+              path: '',
+              name: 'warehouse-list',
+              component: warehouseList
+            },
+            {
+              path: ':id',
+              name: 'warehouse-form',
+              component: warehouseForm
             }
           ]
         }
