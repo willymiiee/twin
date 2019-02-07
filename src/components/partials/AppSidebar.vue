@@ -23,6 +23,7 @@
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'department-list' }">Departemen</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'jobtitle-list' }">Jabatan</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'warehouse-list' }">Gudang</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" :to="{ name: 'depot-list' }">Depo</router-link></li>
               <li class="nav-item"><router-link class="nav-link" :to="{ name: 'region-list' }">Daerah</router-link></li>
             </ul>
           </b-collapse>

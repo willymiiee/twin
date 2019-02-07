@@ -49,6 +49,10 @@ import regionList from './views/administration/regions/list'
 import warehouseList from './views/warehouses/list'
 import warehouseForm from './views/warehouses/form'
 
+// Depot
+import depotList from './views/depots/list'
+import depotForm from './views/depots/form'
+
 Vue.use(Router)
 
 let routes = new Router({
@@ -133,6 +137,22 @@ let routes = new Router({
                   path: ':id',
                   name: 'warehouse-form',
                   component: warehouseForm
+                }
+              ]
+            },
+            {
+              path: 'depots',
+              component: page,
+              children: [
+                {
+                  path: '',
+                  name: 'depot-list',
+                  component: depotList
+                },
+                {
+                  path: ':id',
+                  name: 'depot-form',
+                  component: depotForm
                 }
               ]
             },
