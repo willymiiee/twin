@@ -255,7 +255,6 @@ export default {
           delete resp.data.data.deleted_by
 
           self.data = resp.data.data
-          console.log(self.data)
           self.loaded = true
         })
         .catch(err => {
