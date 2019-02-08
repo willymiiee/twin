@@ -171,7 +171,7 @@ export default {
         village_id: null,
         zipcode: null
       },
-      types: ['R1', 'R2', 'W', 'MM', 'KOP', 'HRC'],
+      types: ['R1', 'R2', 'W', 'MM', 'KOP', 'HRC', 'HCO', 'B&D'],
       regionType: 'province',
       provinces: [],
       districts: [],
