@@ -297,7 +297,7 @@ let routes = new Router({
     },
     {
       path: '/',
-      redirect: 'app'
+      redirect: 'app/home'
     }
   ]
 })
