@@ -90,6 +90,26 @@
                 <b-form-group label="Toko" label-size="sm">
                   <b-form-checkbox-group v-model="data.roles[8]" :options="roleOptions"/>
                 </b-form-group>
+
+                <b-form-group label="Barang" label-size="sm">
+                  <b-form-checkbox-group v-model="data.roles[9]" :options="roleOptions"/>
+                </b-form-group>
+
+                <b-form-group label="Gudang" label-size="sm">
+                  <b-form-checkbox-group v-model="data.roles[10]" :options="roleOptions"/>
+                </b-form-group>
+
+                <b-form-group label="Depo" label-size="sm">
+                  <b-form-checkbox-group v-model="data.roles[11]" :options="roleOptions"/>
+                </b-form-group>
+
+                <b-form-group label="Tim" label-size="sm">
+                  <b-form-checkbox-group v-model="data.roles[12]" :options="roleOptions"/>
+                </b-form-group>
+
+                <b-form-group label="Principal" label-size="sm">
+                  <b-form-checkbox-group v-model="data.roles[13]" :options="roleOptions"/>
+                </b-form-group>
               </b-form-group>
 
               <b-button
@@ -142,7 +162,7 @@ export default {
         name: null,
         about: null,
         is_dept_head: 0,
-        roles: [[], [], [], [], [], [], [], [], [], []]
+        roles: [[], [], [], [], [], [], [], [], [], [], [], [], [], []]
       },
       locations: [{ value: null, text: 'Silahkan pilih lokasi kantor', disabled: true }],
       departments: [{ value: null, text: 'Silahkan pilih nama departemen', disabled: true }],
