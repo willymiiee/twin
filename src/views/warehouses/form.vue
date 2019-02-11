@@ -8,19 +8,38 @@
 
             <form v-if="loaded" class="forms-sample">
               <b-form-group horizontal label="Kode" label-for="code">
-                <b-form-input id="code" v-model.trim="data.code"></b-form-input>
+                <b-form-input id="code" placeholder="Kode gudang" v-model.trim="data.code"></b-form-input>
                 <p v-show="'code' in this.error" class="text-danger">{{ this.error.code }}</p>
               </b-form-group>
 
               <b-form-group horizontal label="Nama" label-for="name">
-                <b-form-input id="name" v-model.trim="data.name"></b-form-input>
+                <b-form-input id="name" placeholder="Nama gudang" v-model.trim="data.name"></b-form-input>
                 <p v-show="'name' in this.error" class="text-danger">{{ this.error.name }}</p>
+              </b-form-group>
+
+              <b-form-group horizontal label="Keterangan" label-for="note">
+                <b-form-textarea
+                  v-model="data.note"
+                  placeholder="Keterangan"
+                  :rows="3"
+                  :max-rows="6"
+                />
+                <p v-show="'note' in this.error" class="text-danger">{{ this.error.note }}</p>
+              </b-form-group>
+
+              <b-form-group horizontal label="Tipe" label-for="type">
+                <b-form-select v-model="data.type" :options="types">
+                  <template slot="first">
+                    <option :value="null" disabled>Silahkan pilih tipe gudang</option>
+                  </template>
+                </b-form-select>
+                <p v-show="'type' in this.error" class="text-danger">{{ this.error.type }}</p>
               </b-form-group>
 
               <b-form-group horizontal label="Alamat" label-for="address">
                 <b-form-textarea
                   v-model="data.address"
-                  placeholder="Alamat Lengkap"
+                  placeholder="Alamat lengkap"
                   :rows="3"
                   :max-rows="6"
                 />
@@ -28,12 +47,12 @@
               </b-form-group>
 
               <b-form-group horizontal label="Nomor Telepon" label-for="phone">
-                <b-form-input id="phone" v-model.trim="data.phone"></b-form-input>
+                <b-form-input id="phone" placeholder="No. telepon gudang" v-model.trim="data.phone"></b-form-input>
                 <p v-show="'phone' in this.error" class="text-danger">{{ this.error.phone }}</p>
               </b-form-group>
 
               <b-form-group horizontal label="Kode Pos" label-for="zipcode">
-                <b-form-input id="zipcode" v-model.trim="data.zipcode"></b-form-input>
+                <b-form-input id="zipcode" placeholder="Kode pos" v-model.trim="data.zipcode"></b-form-input>
                 <p v-show="'zipcode' in this.error" class="text-danger">{{ this.error.zipcode }}</p>
               </b-form-group>
 
@@ -42,7 +61,11 @@
                   v-model="data.province_id"
                   :options="provinces"
                   @change="getRegion('district', $event)"
-                />
+                >
+                  <template slot="first">
+                    <option :value="null" disabled>Silahkan pilih provinsi</option>
+                  </template>
+                </b-form-select>
                 <p
                   v-show="'province_id' in this.error"
                   class="text-danger"
@@ -54,7 +77,12 @@
                   v-model="data.district_id"
                   :options="districts"
                   @change="getRegion('subdistrict', $event)"
-                />
+                >
+                  <template slot="first">
+                    <option :value="null" disabled>Silahkan pilih kabupaten</option>
+                  </template>
+                </b-form-select>
+
                 <p
                   v-show="'district_id' in this.error"
                   class="text-danger"
@@ -66,7 +94,12 @@
                   v-model="data.subdistrict_id"
                   :options="subdistricts"
                   @change="getRegion('village', $event)"
-                />
+                >
+                  <template slot="first">
+                    <option :value="null" disabled>Silahkan pilih kecamatan</option>
+                  </template>
+                </b-form-select>
+
                 <p
                   v-show="'subdistrict_id' in this.error"
                   class="text-danger"
@@ -74,7 +107,11 @@
               </b-form-group>
 
               <b-form-group horizontal label="Kelurahan" label-for="village_id">
-                <b-form-select v-model="data.village_id" :options="villages"/>
+                <b-form-select v-model="data.village_id" :options="villages">
+                  <template slot="first">
+                    <option :value="null" disabled>Silahkan pilih kelurahan</option>
+                  </template>
+                </b-form-select>
                 <p
                   v-show="'village_id' in this.error"
                   class="text-danger"
@@ -129,6 +166,8 @@ export default {
       data: {
         code: null,
         name: null,
+        note: null,
+        type: null,
         address: null,
         latitude: null,
         longitude: null,
@@ -139,7 +178,13 @@ export default {
         village_id: null,
         zipcode: null
       },
-      type: 'province',
+      types: [
+        { value: 'good', text: 'Baik' },
+        { value: 'bad_stock', text: 'Stok Buruk' },
+        { value: 'canvas', text: 'Kanvas' },
+        { value: 'motor', text: 'Motor' }
+      ],
+      regionType: 'province',
       provinces: [],
       districts: [],
       subdistricts: [],
@@ -149,7 +194,7 @@ export default {
     }
   },
   mounted() {
-    this.getRegion(this.type)
+    this.getRegion(this.regionType)
     if (this.$route.params.id !== 'add') {
       this.loaded = false
       this.edit = true
@@ -162,22 +207,22 @@ export default {
       let parentId = null
       if (event) parentId = event
       let self = this
-      self.type = type
+      self.regionType = type
       self.$http
-        .get('region?type=' + self.type + '&parent_id=' + parentId)
+        .get('region?type=' + self.regionType + '&parent_id=' + parentId)
         .then(resp => {
           const data = resp.data.map(u => {
             return { value: u.id, text: u.name }
           })
-          if (self.type == 'province') self.provinces = data
-          else if (self.type == 'district') {
+          if (self.regionType == 'province') self.provinces = data
+          else if (self.regionType == 'district') {
             self.districts = data
             self.subdistricts = []
             self.villages = []
-          } else if (self.type == 'subdistrict') {
+          } else if (self.regionType == 'subdistrict') {
             self.subdistricts = data
             self.villages = []
-          } else if (self.type == 'village') self.villages = data
+          } else if (self.regionType == 'village') self.villages = data
           self.loaded = true
         })
         .catch(err => {
