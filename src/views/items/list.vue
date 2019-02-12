@@ -30,18 +30,64 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="d in datas" :key="d.code">
-                      <td class="pl-0">{{ d.code }}</td>
-                      <td class="pl-0">{{ d.name }}</td>
-                      <td class="pl-0">{{ d.unit }}</td>
-                      <td class="pl-0">{{ d.contents + ' pcs - ' + d.weight + ' ' + d.weight_unit }}</td>
-                      <td class="pr-0 text-right">
-                        <router-link
-                          class="btn btn-outline-success btn-sm"
-                          :to="{ name: 'item-form', params: { id: d.code } }"
-                        >Detil</router-link>
-                      </td>
-                    </tr>
+                    <template v-for="(d, index) in datas">
+                      <tr class="b-table-has-details" :key="d.code">
+                        <td class="pl-0">{{ d.code }}</td>
+                        <td class="pl-0">{{ d.name }}</td>
+                        <td class="pl-0">{{ d.unit }}</td>
+                        <td
+                          class="pl-0"
+                        >{{ d.contents + ' pcs - ' + d.weight + ' ' + d.weight_unit }}</td>
+                        <td class="pr-0 text-right">
+                          <b-button
+                            class="mr-1"
+                            size="sm"
+                            variant="success"
+                            @click.stop="toggleDetails(index)"
+                          >{{ d.isActive ? 'Sembunyikan' : 'Daftar harga' }}</b-button>
+
+                          <router-link
+                            class="btn btn-outline-success btn-sm"
+                            :to="{ name: 'item-form', params: { id: d.code } }"
+                          >Detil</router-link>
+                        </td>
+                      </tr>
+                      <tr class="b-table-details" v-if="d.isActive" :key="d.code + '.prices'">
+                        <td colspan="5">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="row card-title mb-4">
+                                <div class="col">
+                                  <router-link
+                                    class="btn btn-outline-info btn-sm float-right"
+                                    :to="{ name: 'item-prices', params: { id: d.code } }"
+                                  >Data harga</router-link>
+                                </div>
+
+                                <div class="table-responsive">
+                                  <table class="table center-aligned-table">
+                                    <thead>
+                                      <tr>
+                                        <th>Tipe</th>
+                                        <th>Harga</th>
+                                        <th>Harga Satuan</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr v-for="p in d.prices" :key="d.code + '.prices.' + p.type">
+                                        <td>{{ p.type }}</td>
+                                        <td>{{ p.price | toIDR }}</td>
+                                        <td>{{ p.price / d.contents | toIDR }}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </template>
                   </tbody>
                 </table>
               </div>
@@ -85,7 +131,7 @@
 <script>
 export default {
   name: 'ItemList',
-  data () {
+  data() {
     return {
       datas: [],
       loaded: false,
@@ -95,18 +141,26 @@ export default {
       errorApi: false
     }
   },
-  mounted () {
+  mounted() {
     this.getData()
   },
   methods: {
-    getData () {
+    toggleDetails(key) {
+      this.datas[key].isActive = !this.datas[key].isActive
+    },
+
+    getData() {
       let self = this
       self.$http
-        .get('admin/item?page=' + self.currentPage)
+        .get('admin/item?page=' + self.currentPage + '&per_page=' + self.perPage)
         .then(resp => {
           self.loaded = true
           self.totalRows = resp.data.meta.total
-          self.datas = resp.data.data
+          self.datas = resp.data.data.map(d => {
+            let o = Object.assign({}, d)
+            o.isActive = false
+            return o
+          })
         })
         .catch(err => {
           self.errorApi = true
@@ -114,10 +168,15 @@ export default {
         })
     },
 
-    pageChange (page) {
+    pageChange(page) {
       this.currentPage = page
       this.loaded = false
       this.getData()
+    }
+  },
+  filters: {
+    toIDR(value) {
+      return 'Rp. ' + parseFloat(value).toLocaleString('id')
     }
   }
 }

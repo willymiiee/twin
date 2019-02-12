@@ -118,6 +118,8 @@ export default {
       self.$http
         .get('admin/item/' + self.$route.params.id)
         .then(resp => {
+          delete resp.data.data.prices
+          delete resp.data.data.stocks
           delete resp.data.data.created_at
           delete resp.data.data.created_by
           delete resp.data.data.updated_at

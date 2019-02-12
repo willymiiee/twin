@@ -64,6 +64,7 @@ import teamForm from './views/teams/form'
 // Item
 import itemList from './views/items/list'
 import itemForm from './views/items/form'
+import itemPriceForm from './views/items/price'
 
 Vue.use(Router)
 
@@ -252,6 +253,11 @@ let routes = new Router({
               path: ':id',
               name: 'item-form',
               component: itemForm
+            },
+            {
+              path: ':id/prices',
+              name: 'item-prices',
+              component: itemPriceForm
             }
           ]
         },
