@@ -33,6 +33,7 @@
         <li class="nav-item"><router-link class="nav-link" :to="{ name: 'trip-list' }"><i class="fa fa-fw fa-calendar mr-2"></i> <span class="menu-title ml-2">Perjalanan</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" :to="{ name: 'store-list' }"><i class="fa fa-fw fa-home mr-2"></i> <span class="menu-title ml-2">Toko</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" :to="{ name: 'item-list' }"><i class="fa fa-fw fa-archive mr-2"></i> <span class="menu-title ml-2">Barang</span></router-link></li>
+        <li class="nav-item"><router-link class="nav-link" :to="{ name: 'stock-warehouse' }"><i class="fa fa-fw fa-database mr-2"></i> <span class="menu-title ml-2">Stok</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" :to="{ name: 'user-list' }"><i class="fa fa-fw fa-user mr-2"></i> <span class="menu-title ml-2">Karyawan</span></router-link></li>
         <li class="nav-item"><div class="nav-link" @click="logout"><i class="fa fa-fw fa-sign-out mr-2"></i> <span class="menu-title ml-2">Keluar</span></div></li>
       </ul>

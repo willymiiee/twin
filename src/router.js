@@ -66,6 +66,11 @@ import itemList from './views/items/list'
 import itemForm from './views/items/form'
 import itemPriceForm from './views/items/price'
 
+// Stock
+import stockWarehouse from './views/stocks/warehouse'
+import stockList from './views/stocks/list'
+import stockForm from './views/stocks/form'
+
 Vue.use(Router)
 
 let routes = new Router({
@@ -258,6 +263,27 @@ let routes = new Router({
               path: ':id/prices',
               name: 'item-prices',
               component: itemPriceForm
+            }
+          ]
+        },
+        {
+          path: 'stocks',
+          component: page,
+          children: [
+            {
+              path: '',
+              name: 'stock-warehouse',
+              component: stockWarehouse
+            },
+            {
+              path: ':id',
+              name: 'stock-list',
+              component: stockList
+            },
+            {
+              path: ':warehouseId/:id',
+              name: 'stock-form',
+              component: stockForm
             }
           ]
         },
