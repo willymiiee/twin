@@ -110,6 +110,10 @@
                 <b-form-group label="Principal" label-size="sm">
                   <b-form-checkbox-group v-model="data.roles[13]" :options="roleOptions"/>
                 </b-form-group>
+
+                <b-form-group label="Stock" label-size="sm">
+                  <b-form-checkbox-group v-model="data.roles[14]" :options="roleOptions"/>
+                </b-form-group>
               </b-form-group>
 
               <b-button
@@ -162,7 +166,7 @@ export default {
         name: null,
         about: null,
         is_dept_head: 0,
-        roles: [[], [], [], [], [], [], [], [], [], [], [], [], [], []]
+        roles: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
       },
       locations: [{ value: null, text: 'Silahkan pilih lokasi kantor', disabled: true }],
       departments: [{ value: null, text: 'Silahkan pilih nama departemen', disabled: true }],
